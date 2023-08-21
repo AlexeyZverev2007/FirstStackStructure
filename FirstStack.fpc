@@ -1,0 +1,45 @@
+program MyStack;
+
+type
+	ItemPoint = ^item;
+	item = record
+		data: longint;
+		next: ItemPoint;
+	end;
+type
+	StackOfItems = ItemPoint;
+
+procedure ItemInitilisation(var stack: StackOfItems);
+begin
+	stack := nil
+end;
+
+procedure ItemPush(var stack: StackOfItems; n: longint);
+var
+	temp: ItemPoint;
+begin
+	new(temp);
+	temp^.data := n;
+	temp^.next := stack;
+	stack := temp
+end;
+
+procedure ItemPop(var stack: StackOfItems; var n: longint);
+var
+	temp: ItemPoint;
+begin
+	n := stack^.data;
+	temp := stack;
+	stack := stack^.next;
+	dispose(temp)
+end;
+
+function ItemEmptyTest(var stack: StackOfItems): boolean;
+begin
+	ItemEmptyTest := stack = nil
+end;
+
+begin
+end.
+
+
